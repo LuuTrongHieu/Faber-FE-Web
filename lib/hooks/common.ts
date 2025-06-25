@@ -1,8 +1,8 @@
 "use client";
-import Modal, { TModalData } from "@/lib/classes/Modal";
-import { TAppDispatch, TRootState } from "@/lib/redux/store";
 import { JSX, useCallback, useEffect, useState } from "react";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import Modal, { TModalData } from "../classes/Modal";
+import { TAppDispatch, TRootState } from "../redux/store";
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = () => useDispatch<TAppDispatch>();

@@ -1,9 +1,9 @@
 "use client";
-import { DOTS, usePagination } from "@/app/hooks/usePagination";
+import { DOTS, usePagination } from "@/app/lib/hooks/usePagination";
 import classNames from "classnames";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { Input } from "../bases/Input";
-import SelectBox from "../bases/SelectBox";
+import { Input } from "./Input";
+import SelectBox from "./SelectBox";
 import BackPageIcon from "../icons/BackPageIcon";
 import NextPageIcon from "../icons/NextPageIcon";
 

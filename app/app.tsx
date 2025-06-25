@@ -1,7 +1,7 @@
 "use client";
 
-import ToastMessage from "./components/commons/ToastMessage";
-import { useAppSelector, useModalQueue } from "./hooks/common";
+import ToastMessage from "../components/commons/ToastMessage";
+import { useAppSelector, useModalQueue } from "../lib/hooks/common";
 
 const App = ({ children }: { children: React.ReactNode }) => {
     const modalState = useAppSelector((state) => state.modal);

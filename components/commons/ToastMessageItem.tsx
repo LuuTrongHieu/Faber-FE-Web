@@ -1,12 +1,12 @@
 "use client";
-import classNames from "classnames";
-import React, { useCallback, useEffect } from "react";
-import { useAppDispatch } from "../../hooks/common";
 import { IToast, toastMessageActions } from "@/lib/redux/features/toastMessage/toastMessageSlice";
-import SuccessToastIcon from "../icons/SuccessToastIcon";
-import DangerToastIcon from "../icons/DangerToastIcon";
-import WarningIcon from "../icons/WarningIcon";
+import classNames from "classnames";
+import { useCallback, useEffect } from "react";
+import { useAppDispatch } from "../../lib/hooks/common";
 import CloseToastIcon from "../icons/CloseToastIcon";
+import DangerToastIcon from "../icons/DangerToastIcon";
+import SuccessToastIcon from "../icons/SuccessToastIcon";
+import WarningIcon from "../icons/WarningIcon";
 
 const TOAST_TIME = 5000;
 

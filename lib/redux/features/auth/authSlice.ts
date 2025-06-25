@@ -4,7 +4,7 @@ import authApi from "@/lib/services/endpoints/auth";
 import { CaseReducer, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type TLoginError = {
-    email?: string;
+    so_dien_thoai?: string;
     password?: string;
     type?: string;
 };
@@ -66,7 +66,7 @@ const authSlice = createSlice({
         });
         builder.addMatcher(authApi.endpoints.login.matchFulfilled, (state, action) => {
             state.bLogging = "fulfilled";
-            const token = action.payload.data.accessToken;
+            const token = action.payload.data.access_token;
             state.token = token;
             window.localStorage.setItem(LOCAL_STORAGE_KEYS.token, token || "");
         });

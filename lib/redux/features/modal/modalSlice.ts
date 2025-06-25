@@ -1,4 +1,4 @@
-import { TModalData } from "@/lib/classes/Modal";
+import { TModalData } from "@/app/lib/classes/Modal";
 import { CaseReducer, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type TModalState = {

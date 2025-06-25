@@ -2,9 +2,9 @@
 import ReactDOM from "react-dom";
 import cn from "classnames";
 import { useCallback, useEffect } from "react";
-import { useAppDispatch } from "../../hooks/common";
+import { useAppDispatch } from "../../lib/hooks/common";
 import CloseIcon from "../icons/CloseIcon";
-import { modalSliceActions } from "@/lib/redux/features/modal/modalSlice";
+import { modalSliceActions } from "@/app/lib/redux/features/modal/modalSlice";
 
 type Props = {
     children: React.ReactNode;

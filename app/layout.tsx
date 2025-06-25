@@ -10,8 +10,8 @@ const font = Manrope({
 });
 
 export const metadata: Metadata = {
-    title: "My Template Nextjs15 App",
-    description: "A simple motor landing page built with Next.js and Tailwind CSS",
+    title: "Faber Color",
+    description: "A simple paint page built with Next.js and Tailwind CSS",
     icons: {
         icon: "/favicon.ico", // Đường dẫn từ thư mục public/
     },

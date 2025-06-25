@@ -1,7 +1,8 @@
 export type TRegisterRequest = {
-    email: string;
+    so_dien_thoai: string;
     password: string;
-    passwordConfirmation: string;
+    ho_ten: string;
+    dia_chi: string;
 };
 
 export type TRegisterReturn = {
@@ -12,7 +13,7 @@ export type TRegisterReturn = {
 };
 
 export type TLoginRequest = {
-    email: string;
+    so_dien_thoai: string;
     password: string;
 };
 
@@ -20,7 +21,9 @@ export type TLoginReturn = {
     message: string;
     success: boolean;
     data: {
-        accessToken: string;
-        refreshToken: string;
+        access_token: string;
+        token_type: string;
+        refresh_token: string;
+        expires_at: string;
     };
 };
