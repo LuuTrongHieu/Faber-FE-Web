@@ -1,11 +1,11 @@
 "use client";
-import { DOTS, usePagination } from "@/app/lib/hooks/usePagination";
+import { DOTS, usePagination } from "@/lib/hooks/usePagination";
 import classNames from "classnames";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { Input } from "./Input";
-import SelectBox from "./SelectBox";
 import BackPageIcon from "../icons/BackPageIcon";
 import NextPageIcon from "../icons/NextPageIcon";
+import { Input } from "./Input";
+import SelectBox from "./SelectBox";
 
 const BUTTON_CONST = 3;
 const SIBLING_COUNT = 1;
