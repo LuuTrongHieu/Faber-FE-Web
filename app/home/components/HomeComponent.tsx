@@ -1,6 +1,10 @@
 "use client";
+import { Button } from "@/components/bases/Button";
 import LoadingIcon from "@/components/icons/LoadingIcon";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/common";
+import { authActions } from "@/lib/redux/features/auth/authSlice";
+import { modalSliceActions } from "@/lib/redux/features/modal/modalSlice";
+import { toastMessageActions } from "@/lib/redux/features/toastMessage/toastMessageSlice";
 import cartApi from "@/lib/services/endpoints/cart";
 import userApi from "@/lib/services/endpoints/user";
 import { IUnpaidOrderOfUser, IUserOfAllUnpaidOrders } from "@/lib/services/types/cart";
@@ -8,8 +12,6 @@ import { Table } from "antd";
 import cn from "classnames";
 import { useEffect, useState } from "react";
 import columns, { expandColumns } from "../column";
-import { Button } from "@/components/bases/Button";
-import { modalSliceActions } from "@/lib/redux/features/modal/modalSlice";
 
 const HomeComponent = () => {
     const dispatch = useAppDispatch();
@@ -43,11 +45,26 @@ const HomeComponent = () => {
                 <div
                     className={cn(
                         "h-[72px] bg-white drop-shadow-[0_6px_50px_rgba(0, 0, 0, 0.8)]",
-                        "text-black flex flex-row items-center justify-start px-[16px] py-[24px]",
+                        "text-black flex flex-row items-center justify-between px-[16px] py-[24px]",
                         "text-[20px] font-semibold text-black/88"
                     )}
                 >
-                    Danh sách đơn hàng chưa thanh toán
+                    <span>Danh sách đơn hàng chưa thanh toán</span>
+                    <Button
+                        className="btn btn-sm contained-secondary mr-5"
+                        onClick={() => {
+                            dispatch(authActions.logout());
+                            dispatch(
+                                toastMessageActions.addToastMessage({
+                                    title: "Đăng xuất",
+                                    description: "Bạn đã đăng xuất tài khoản thành công",
+                                    type: "info",
+                                })
+                            );
+                        }}
+                    >
+                        Đăng xuất
+                    </Button>
                 </div>
                 <div className="h-full m-[16px]">
                     <div className="h-full bg-white border-solid border-[1px] border-[ #f0f0f0] rounded-[8px] p-[24px]">

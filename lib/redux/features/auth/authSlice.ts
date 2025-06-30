@@ -20,7 +20,7 @@ export type TAuthState = {
 
 const initialState: TAuthState = {
     bLoggingOut: false,
-    bLogging: "pending",
+    bLogging: undefined,
     loginError: undefined,
     accessToken: undefined,
     refreshToken: undefined,
@@ -62,7 +62,7 @@ const _logout: CaseReducer<TAuthState> = (state) => {
     state.refreshToken = undefined;
     state.refreshTokenExpiredAt = undefined;
     state.bLoggingOut = false;
-    state.bLogging = "rejected";
+    state.bLogging = undefined;
     window.localStorage.clear();
 };
 
