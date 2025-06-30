@@ -3,9 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev --turbopack",
+        "dev": "next dev -p 3000 --turbopack",
         "build": "next build",
-        "start": "next start",
+        "start": "next start -p 3000",
         "lint": "next lint"
     },
     "dependencies": {
@@ -24,7 +24,9 @@
         "@types/node": "^20",
         "@types/react": "^19",
         "@types/react-dom": "^19",
+        "antd": "^5.26.2",
         "autoprefixer": "^10.4.16",
+        "dayjs": "^1.11.13",
         "eslint": "^9",
         "eslint-config-next": "15.3.2",
         "postcss": "^8.4.31",

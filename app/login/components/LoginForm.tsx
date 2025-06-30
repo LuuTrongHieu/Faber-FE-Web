@@ -9,6 +9,7 @@ import { TObject, TRule } from "@/lib/classes/Validator";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/common";
 import { useValidator } from "@/lib/hooks/useValidator";
 import { authActions } from "@/lib/redux/features/auth/authSlice";
+import { toastMessageActions } from "@/lib/redux/features/toastMessage/toastMessageSlice";
 import authApi from "@/lib/services/endpoints/auth";
 import classNames from "classnames";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
@@ -39,8 +40,8 @@ const LoginForm = () => {
     const router: AppRouterInstance = useRouter();
     const rfForm = useRef<HTMLFormElement>(null);
     const validator = useValidator(rules);
-    const { token, bLogging, loginError } = useAppSelector((state) => state.auth);
-    const [login] = authApi.useLoginMutation();
+    const { accessToken, bLogging, loginError } = useAppSelector((state) => state.auth);
+    const [loginRemember] = authApi.useLoginRememberMutation();
     const [phoneNumber, setPhoneNumber] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [errors, setErrors] = useState<TObject>({});
@@ -56,12 +57,22 @@ const LoginForm = () => {
             setErrors(validator.errors);
             return;
         }
-
-        login({
-            so_dien_thoai: phoneNumber.trim(),
-            password: password,
-        });
-    }, [phoneNumber, password, validator, login]);
+        try {
+            await loginRemember({
+                so_dien_thoai: phoneNumber.trim(),
+                password: password,
+            });
+        } catch (error) {
+            console.error("Failed: ", error);
+            dispatch(
+                toastMessageActions.addToastMessage({
+                    title: "Đăng nhập thất bại",
+                    description: "Hãy kiểm tra lại thông tin tài khoản",
+                    type: "danger",
+                })
+            );
+        }
+    }, [dispatch, phoneNumber, password, validator, loginRemember]);
 
     const handleOnPhoneNumberErrorBtnClicked = useCallback(() => {
         const e = { ...errors };
@@ -100,17 +111,31 @@ const LoginForm = () => {
     }, [showPassword]);
 
     useEffect(() => {
-        (async () => {
-            if (token) router.replace("/");
-        })();
-    }, [token]);
+        if (accessToken) router.replace("/");
+    }, [accessToken, router]);
 
     useEffect(() => {
-        if (bLogging == "rejected" && loginError) {
-            setErrors({
-                phoneNumberNotMatch: loginError.so_dien_thoai || "",
-                passwordNotMatch: loginError.password || "",
-            });
+        if (bLogging === "rejected") {
+            if (loginError) {
+                setErrors({
+                    phoneNumberNotMatch: loginError.so_dien_thoai || "",
+                    passwordNotMatch: loginError.password || "",
+                });
+            }
+            dispatch(
+                toastMessageActions.addToastMessage({
+                    title: "Đăng nhập thất bại",
+                    description: "Hãy kiểm tra lại thông tin tài khoản",
+                    type: "danger",
+                })
+            );
+        } else if (bLogging === "fulfilled") {
+            dispatch(
+                toastMessageActions.addToastMessage({
+                    title: "Đăng nhập thành công",
+                    type: "success",
+                })
+            );
         }
         return () => {
             setErrors({});

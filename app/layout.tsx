@@ -24,7 +24,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${font.className} antialiased`}>
+            <body
+                className={`${font.className} w-full h-full antialiased font-primary scrollbar-thin overflow-x-hidden`}
+            >
                 <StoreProvider>
                     <App>{children}</App>
                 </StoreProvider>

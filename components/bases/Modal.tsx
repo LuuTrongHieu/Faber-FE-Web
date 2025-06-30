@@ -1,10 +1,10 @@
 "use client";
-import ReactDOM from "react-dom";
+import { modalSliceActions } from "@/lib/redux/features/modal/modalSlice";
 import cn from "classnames";
 import { useCallback, useEffect } from "react";
+import ReactDOM from "react-dom";
 import { useAppDispatch } from "../../lib/hooks/common";
 import CloseIcon from "../icons/CloseIcon";
-import { modalSliceActions } from "@/app/lib/redux/features/modal/modalSlice";
 
 type Props = {
     children: React.ReactNode;
@@ -46,7 +46,7 @@ export default function Modal({
                     "flex items-center justify-center border-[1.5px] border-[#A3A3A3] cursor-pointer"
                 )}
             >
-                <CloseIcon className="fill-[#231815] dark:fill-[#B7B9BA] w-[10.5px] h-[10.5px]" />
+                <CloseIcon className="fill-[#231815] dark:fill-[#B7B9BA] w-[9.5px] h-[10.5px]" />
             </div>
         );
     }, [bCloseBtn, handleOnCloseBtnClicked]);

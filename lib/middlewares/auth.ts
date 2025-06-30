@@ -8,10 +8,10 @@ export const authMiddleware: Middleware =
     (store: MiddlewareAPI<TAppDispatch, TRootState>) => (next) => async (action: any) => {
         switch (action.type) {
             default: {
-                const token = store.getState().auth.token;
-                const oldToken = window.localStorage.getItem(LOCAL_STORAGE_KEYS.token);
-                if (oldToken && !token && action.type !== authActions.setToken.type) {
-                    store.dispatch(authActions.setToken(oldToken));
+                const token = store.getState().auth.accessToken;
+                const oldToken = window.localStorage.getItem(LOCAL_STORAGE_KEYS.accessToken);
+                if (oldToken && !token && action.type !== authActions.setAccessToken.type) {
+                    store.dispatch(authActions.setAccessToken(oldToken));
                     return next(action);
                 }
                 if (

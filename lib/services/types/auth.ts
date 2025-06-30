@@ -5,25 +5,23 @@ export type TRegisterRequest = {
     dia_chi: string;
 };
 
-export type TRegisterReturn = {
-    data: {
-        message: string;
-        success: boolean;
-    };
-};
-
 export type TLoginRequest = {
     so_dien_thoai: string;
     password: string;
 };
 
 export type TLoginReturn = {
-    message: string;
-    success: boolean;
-    data: {
-        access_token: string;
-        token_type: string;
-        refresh_token: string;
-        expires_at: string;
-    };
+    access_token: string;
+    token_type: string;
+    refresh_token: string;
+    expires_at: string;
 };
+
+export interface IRefreshTokenRequest {
+    token: string;
+}
+
+export interface IRefreshTokenResponse {
+    access_token: string;
+    token_type: string;
+}

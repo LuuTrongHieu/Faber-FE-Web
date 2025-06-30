@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { JSX } from "react";
+import UpdateOrderInformationModal, {
+    IUpdateOrderInformationModalProps,
+} from "@/components/modals/UpdateOrderInformationModal";
+import React, { JSX } from "react";
+import { IUnpaidOrderOfUser } from "../services/types/cart";
 
-export const MODALS = [] as const;
+export const MODALS = ["popup/update-order-information"] as const;
 
 export type TModal = (typeof MODALS)[number];
 
@@ -49,6 +53,17 @@ class Modal implements IModal {
 
     public renderElement(container: HTMLElement): JSX.Element | null {
         switch (this._type) {
+            case "popup/update-order-information":
+                return React.createElement<IUpdateOrderInformationModalProps>(
+                    UpdateOrderInformationModal,
+                    {
+                        container,
+                        propsState: this._propsState as {
+                            userId: number;
+                            unpaidOrderOfUser: IUnpaidOrderOfUser;
+                        },
+                    }
+                );
             default:
                 return null;
         }
